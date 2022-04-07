@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import DefaultLayout from "../components/DefaultLayout";
 
 const Items = () => {
   return (
-    <div>Items</div>
-  )
-}
+    <DefaultLayout>
+      <h1>Items</h1>
+    </DefaultLayout>
+  );
+};
 
-export default Items
+export default Items;
