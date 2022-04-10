@@ -12,16 +12,16 @@
 .item .price {
   text-align: center;
   color: rgba(0, 0, 0, 0.636);
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .item Button {
-    margin-top: 10px;
-    background-color: rgb(22, 219, 22) !important;
-    color: white !important;
+  margin-top: 10px;
+  background-color: rgb(22, 219, 22) !important;
+  color: white !important;
 }
 
 .item Button:hover {
-    background-color: white !important;
-    color: rgb(22, 219, 22) !important;
+  background-color: white !important;
+  color: rgb(22, 219, 22) !important;
 }

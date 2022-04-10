@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import {
@@ -9,73 +9,78 @@ import {
   CopyOutlined,
   LogoutOutlined,
   UnorderedListOutlined,
+  ShoppingCartOutlined,
 } from "@ant-design/icons";
 import "./styles.css";
+import { useSelector } from "react-redux";
 
 const { Header, Sider, Content } = Layout;
 
-export default class DefaultLayout extends React.Component {
-  state = {
-    collapsed: false,
+const DefaultLayout = (props) => {
+  const [collapsed, setCollapsed] = useState(false);
+
+  const { cartItems } = useSelector((state) => state.rootReducer);
+  const toggle = () => {
+    setCollapsed(!collapsed);
   };
 
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  };
-
-  render() {
-    return (
-      <Layout>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="logo">
-            <h3>SmartPay</h3>
+  return (
+    <Layout>
+      <Sider trigger={null} collapsible collapsed={collapsed}>
+        <div className="logo">
+          <h3>SmartPay</h3>
+        </div>
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={window.location.pathname}
+        >
+          <Menu.Item key="1" icon={<HomeOutlined />}>
+            <Link to="/home">Home</Link>
+          </Menu.Item>
+          <Menu.Item key="2" icon={<CopyOutlined />}>
+            <Link to="/bills">Bills</Link>
+          </Menu.Item>
+          <Menu.Item key="3" icon={<UnorderedListOutlined />}>
+            <Link to="/items">Items</Link>
+          </Menu.Item>
+          <Menu.Item key="4" icon={<UserOutlined />}>
+            <Link to="/customers">Customers</Link>
+          </Menu.Item>
+          <Menu.Item key="5" icon={<LogoutOutlined />}>
+            <Link to="/logout">Logout</Link>
+          </Menu.Item>
+        </Menu>
+      </Sider>
+      <Layout className="site-layout">
+        <Header className="site-layout-background" style={{ padding: 10 }}>
+          {React.createElement(
+            collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+            {
+              className: "trigger",
+              onClick: toggle,
+            }
+          )}
+          <div className="cart-count d-flex align-items-center">
+            <b>
+              <p className="mt-3 mr-2">{cartItems.length}</p>
+            </b>
+            <ShoppingCartOutlined />
           </div>
-          <Menu
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={window.location.pathname}
-          >
-            <Menu.Item key="1" icon={<HomeOutlined />}>
-              <Link to="/home">Home</Link>
-            </Menu.Item>
-            <Menu.Item key="2" icon={<CopyOutlined />}>
-              <Link to="/bills">Bills</Link>
-            </Menu.Item>
-            <Menu.Item key="3" icon={<UnorderedListOutlined />}>
-              <Link to="/items">Items</Link>
-            </Menu.Item>
-            <Menu.Item key="4" icon={<UserOutlined />}>
-              <Link to="/customers">Customers</Link>
-            </Menu.Item>
-            <Menu.Item key="5" icon={<LogoutOutlined />}>
-              <Link to="/logout">Logout</Link>
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 10 }}>
-            {React.createElement(
-              this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-              {
-                className: "trigger",
-                onClick: this.toggle,
-              }
-            )}
-          </Header>
-          <Content
-            className="site-layout-background"
-            style={{
-              margin: "10px",
-              padding: 24,
-              minHeight: 280,
-            }}
-          >
-            {this.props.children}
-          </Content>
-        </Layout>
+        </Header>
+        <Content
+          className="site-layout-background"
+          style={{
+            margin: "10px",
+            padding: 24,
+            minHeight: 280,
+          }}
+        >
+          {props.children}
+        </Content>
       </Layout>
-    );
-  }
-}
+    </Layout>
+  );
+};
+
+export default DefaultLayout;
