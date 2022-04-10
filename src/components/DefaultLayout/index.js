@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Layout, Menu } from "antd";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Layout, Menu, Spin } from "antd";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -19,13 +19,21 @@ const { Header, Sider, Content } = Layout;
 const DefaultLayout = (props) => {
   const [collapsed, setCollapsed] = useState(false);
 
-  const { cartItems } = useSelector((state) => state.rootReducer);
+  const { cartItems, loading } = useSelector((state) => state.rootReducer);
+
   const toggle = () => {
     setCollapsed(!collapsed);
   };
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
   return (
     <Layout>
+      {loading && <Spin size="large" className="spinner" />}
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
           <h3>SmartPay</h3>
@@ -36,7 +44,7 @@ const DefaultLayout = (props) => {
           defaultSelectedKeys={window.location.pathname}
         >
           <Menu.Item key="1" icon={<HomeOutlined />}>
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
           </Menu.Item>
           <Menu.Item key="2" icon={<CopyOutlined />}>
             <Link to="/bills">Bills</Link>
@@ -61,7 +69,10 @@ const DefaultLayout = (props) => {
               onClick: toggle,
             }
           )}
-          <div className="cart-count d-flex align-items-center">
+          <div
+            className="cart-count d-flex align-items-center"
+            onClick={() => navigate("/cart")}
+          >
             <b>
               <p className="mt-3 mr-2">{cartItems.length}</p>
             </b>
