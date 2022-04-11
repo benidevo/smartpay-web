@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
-import Items from "./pages/Items";
+import Items from "./pages/Item/index";
 import Cart from "./pages/Cart";
 
 function App() {
