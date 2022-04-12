@@ -22,6 +22,10 @@
   border-radius: 5px;
 }
 
+.ant-layout-content {
+  height: 80vh;
+  overflow-y: scroll;
+}
 .ant-layout-has-sider .site-layout {
   padding: 15px !important;
 }
@@ -69,6 +73,7 @@
 }
 
 .spinner {
+  z-index: 10 !important;
   position: absolute;
   top: 50%;
   left: 50%;
