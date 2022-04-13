@@ -1,0 +1,14 @@
+.main-div {
+  height: 100vh;
+  background-color: #001628;
+}
+
+.main-div img {
+  width: 50%;
+  display: block;
+  object-fit: fill;
+}
+
+.main-div div {
+  margin: auto;
+}
