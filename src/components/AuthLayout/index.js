@@ -9,7 +9,7 @@ const AuthLayout = (props) => {
         src={props.imageUrl}
         alt=""
       />
-      <div>{props.children}</div>
+      <div className="auth-form-container">{props.children}</div>
     </div>
   );
 };

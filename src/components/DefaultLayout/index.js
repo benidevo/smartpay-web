@@ -18,6 +18,7 @@ const { Header, Sider, Content } = Layout;
 
 const DefaultLayout = (props) => {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
 
   const { cartItems, loading } = useSelector((state) => state.rootReducer);
 
@@ -25,7 +26,10 @@ const DefaultLayout = (props) => {
     setCollapsed(!collapsed);
   };
 
-  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/login");
+  };
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -55,7 +59,7 @@ const DefaultLayout = (props) => {
           <Menu.Item key="4" icon={<UserOutlined />}>
             <Link to="/customers">Customers</Link>
           </Menu.Item>
-          <Menu.Item key="5" icon={<LogoutOutlined />}>
+          <Menu.Item key="5" icon={<LogoutOutlined />} onClick={logout}>
             <Link to="/logout">Logout</Link>
           </Menu.Item>
         </Menu>

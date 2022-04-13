@@ -1,38 +1,26 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Button, message } from "antd";
+import axios from "axios";
 import AuthLayout from "../../components/AuthLayout";
 
-import "./style.css";
-import axios from "axios";
-
-const Register = () => {
-  const [form] = Form.useForm();
+const Login = () => {
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       navigate("/");
     }
   }, []);
 
-  const dispatch = useDispatch();
-
-  //   const validatePasswords = (rule, value, callback) => {
-  //     console.log(form.getFieldsValue(true));
-  //     if (value && value !== form.getFieldValue("password")) {
-  //       callback("Passwords do not match!");
-  //     } else {
-  //       callback();
-  //     }
-  //   };
-
   const onFinish = async (values) => {
     dispatch({ type: "SHOW_LOADING" });
     let response;
     try {
-      response = await axios.post("/auth/register", values);
+      response = await axios.post("/auth/login", values);
       console.log(response);
       if (!response.data.success) {
         dispatch({ type: "HIDE_LOADING" });
@@ -40,34 +28,21 @@ const Register = () => {
       }
       dispatch({ type: "HIDE_LOADING" });
       message.success(response.data.message);
-      dispatch({ type: "SHOW_LOADING" });
+      localStorage.setItem("accessToken", response.data.accessToken);
       setTimeout(() => {
         navigate("/");
       }, 1000);
-      return;
     } catch (error) {
       dispatch({ type: "HIDE_LOADING" });
       message.error(error?.response?.data?.message);
+      console.log(error);
     }
   };
 
   return (
-    <AuthLayout imageUrl="https://images.unsplash.com/photo-1602665742701-389671bc40c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
+    <AuthLayout imageUrl="https://images.unsplash.com/photo-1556742031-c6961e8560b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2400&q=80">
       <Form className="form" onFinish={onFinish}>
-        <h1>Sign up to SmartPay</h1>
-        <Form.Item
-          className="form-item"
-          name="name"
-          rules={[
-            {
-              required: true,
-              message: "Name is required!",
-              type: "string",
-            },
-          ]}
-        >
-          <Input placeholder="Full Name" />
-        </Form.Item>
+        <h1>Login to SmartPay</h1>
         <Form.Item
           name="email"
           rules={[
@@ -98,28 +73,19 @@ const Register = () => {
         >
           <Input placeholder="Password" />
         </Form.Item>
-        <Form.Item
-          name="confirmPassword"
-          rules={[
-            {
-              required: true,
-              message: "Password is required!",
-              type: "string",
-            },
-            // {
-            //   validator: validatePasswords,
-            // },
-          ]}
-          type="password"
-        >
-          <Input placeholder="Confirm Password" />
-        </Form.Item>
-        <Button type="primary" htmlType="submit">
-          Register
-        </Button>
+        <div className="d-flex justify-content-space-between">
+          <Link to="/register">Register</Link>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="d-flex align-items-end"
+          >
+            Login
+          </Button>
+        </div>
       </Form>
     </AuthLayout>
   );
 };
 
-export default Register;
+export default Login;
