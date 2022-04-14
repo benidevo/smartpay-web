@@ -8,7 +8,15 @@ export const rootReducer = (state = initialState, action) => {
     case "ADD_TO_CART":
       return {
         ...state,
-        cartItems: [...state.cartItems, action.payload],
+        cartItems: state.cartItems.find(
+          (item) => item._id === action.payload._id
+        )
+          ? state.cartItems.map((item) =>
+              item._id === action.payload._id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            )
+          : [...state.cartItems, action.payload],
       };
     case "UPDATE_CART_ITEMS":
       return {
@@ -36,6 +44,11 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+      };
+    case "CLEAR_CART":
+      return {
+        ...state,
+        cartItems: [],
       };
     default:
       return state;

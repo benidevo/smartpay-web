@@ -29,6 +29,7 @@ const Login = () => {
       dispatch({ type: "HIDE_LOADING" });
       message.success(response.data.message);
       localStorage.setItem("accessToken", response.data.accessToken);
+      dispatch({ type: "SET_USER_ID", payload: response.data.accessToken });
       setTimeout(() => {
         navigate("/");
       }, 1000);
@@ -73,16 +74,9 @@ const Login = () => {
         >
           <Input placeholder="Password" />
         </Form.Item>
-        <div className="d-flex justify-content-space-between">
-          <Link to="/register">Register</Link>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="d-flex align-items-end"
-          >
-            Login
-          </Button>
-        </div>
+        <Button type="primary" htmlType="submit">
+          Login
+        </Button>
       </Form>
     </AuthLayout>
   );

@@ -33,11 +33,6 @@ const Register = () => {
     let response;
     try {
       response = await axios.post("/auth/register", values);
-      console.log(response);
-      if (!response.data.success) {
-        dispatch({ type: "HIDE_LOADING" });
-        return message.error(response.data.message);
-      }
       dispatch({ type: "HIDE_LOADING" });
       message.success(response.data.message);
       dispatch({ type: "SHOW_LOADING" });

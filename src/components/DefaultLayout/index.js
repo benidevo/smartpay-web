@@ -50,16 +50,19 @@ const DefaultLayout = (props) => {
           <Menu.Item key="1" icon={<HomeOutlined />}>
             <Link to="/">Home</Link>
           </Menu.Item>
-          <Menu.Item key="2" icon={<CopyOutlined />}>
+          <Menu.Item key="2" icon={<ShoppingCartOutlined />}>
+            <Link to="/cart">Cart</Link>
+          </Menu.Item>
+          <Menu.Item key="3" icon={<CopyOutlined />}>
             <Link to="/bills">Bills</Link>
           </Menu.Item>
-          <Menu.Item key="3" icon={<UnorderedListOutlined />}>
+          <Menu.Item key="4" icon={<UnorderedListOutlined />}>
             <Link to="/items">Items</Link>
           </Menu.Item>
-          <Menu.Item key="4" icon={<UserOutlined />}>
+          <Menu.Item key="5" icon={<UserOutlined />}>
             <Link to="/customers">Customers</Link>
           </Menu.Item>
-          <Menu.Item key="5" icon={<LogoutOutlined />} onClick={logout}>
+          <Menu.Item key="6" icon={<LogoutOutlined />} onClick={logout}>
             <Link to="/logout">Logout</Link>
           </Menu.Item>
         </Menu>

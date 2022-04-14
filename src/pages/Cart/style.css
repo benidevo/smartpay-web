@@ -1,0 +1,18 @@
+.subtotal h3 {
+  color: tomato;
+  margin-bottom: 0;
+  padding: 10px;
+}
+
+input,
+.ant-select-selector {
+  border: 1px solid rgb(1, 35, 26) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+input:focus,
+.ant-select-selector:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}

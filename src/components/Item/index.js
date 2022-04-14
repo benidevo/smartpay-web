@@ -22,7 +22,7 @@ const Item = ({ item }) => {
         <b>Price: </b>${item.price}/kg
       </h4>
       <div className="d-flex justify-content-end">
-        <Button onClick={() => addToCart()}>Add to Cart</Button>
+        <Button onClick={addToCart}>Add to Cart</Button>
       </div>
     </div>
   );
