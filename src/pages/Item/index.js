@@ -17,7 +17,7 @@ const Items = () => {
     try {
       dispatch({ type: "SHOW_LOADING" });
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/items/`
+        `${process.env.REACT_APP_API_URL}/items`
       );
       dispatch({ type: "HIDE_LOADING" });
       setItemsData(response.data.items);
@@ -36,7 +36,7 @@ const Items = () => {
     let response;
     try {
       if (!edit) {
-        response = await axios.post("/items", values);
+        response = await axios.post(`${process.env.REACT_APP_API_URL}/items`, values);
         if (!response.data.success) {
           dispatch({ type: "HIDE_LOADING" });
           message.error(response.data.message);
@@ -64,7 +64,9 @@ const Items = () => {
   const deleteItem = async (id) => {
     dispatch({ type: "SHOW_LOADING" });
     try {
-      const response = await axios.delete(`/items/${id}`);
+      const response = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/items/${id}`
+      );
       dispatch({ type: "HIDE_LOADING" });
       if (!response.data.success) {
         message.error(response.data.message);
