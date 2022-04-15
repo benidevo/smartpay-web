@@ -117,7 +117,7 @@ const Cart = () => {
       setTimeout(() => {
         dispatch({ type: "HIDE_LOADING" });
         setChargeBillModal(false);
-        navigate("/");
+        navigate("/bills");
       }, 1000);
     } catch (error) {
       console.log(error.response.data.errors[0].msg);

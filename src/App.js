@@ -5,6 +5,8 @@ import Items from "./pages/Item/index";
 import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Bills from "./pages/Bills";
+import Customers from "./pages/Customers";
 
 function App() {
   return (
@@ -21,6 +23,22 @@ function App() {
           />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/bills"
+            element={
+              <ProtectedRoutes>
+                <Bills />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/customers"
+            element={
+              <ProtectedRoutes>
+                <Customers />
+              </ProtectedRoutes>
+            }
+          />
           <Route
             path="/items"
             element={
