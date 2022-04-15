@@ -1,0 +1,34 @@
+.form h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #001628;
+  margin-bottom: 20px;
+}
+
+.form {
+  text-align: center;
+  border-radius: 15px;
+  background-color: white;
+  padding: 50px;
+}
+
+.ant-input {
+    display: block;
+    border-radius: 10px;
+    border: 1px solid #001628;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.form Button {
+    background-color: #001628 !important;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+}
+.form Button:hover {
+    color: #001628 !important;
+    background-color: white !important;
+
+    /* font-weight: bold; */
+}

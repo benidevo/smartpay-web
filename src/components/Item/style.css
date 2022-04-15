@@ -1,0 +1,32 @@
+.item {
+  box-shadow: 0 0 3px rgb(100, 100, 100);
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.item:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+.item .name {
+  color: tomato;
+  font-size: 20px;
+}
+
+.item .price {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.636);
+  font-size: 18px;
+}
+
+.item Button {
+  margin-top: 10px;
+  background-color: rgb(4, 136, 4) !important;
+  color: white !important;
+}
+
+.item Button:hover {
+  background-color: white !important;
+  color: rgb(4, 136, 4) !important;
+}
