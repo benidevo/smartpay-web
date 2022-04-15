@@ -127,7 +127,7 @@ const Cart = () => {
   return (
     <DefaultLayout>
       <h3>Cart</h3>
-      <Table columns={columns} dataSource={cartItems} />
+      <Table columns={columns} dataSource={cartItems} pagination={false} />
       <hr />
       <div className="d-flex justify-content-end align-items-end flex-column">
         <div className="subtotal">

@@ -4,6 +4,11 @@
   margin-top: 20px;
 }
 
+.item:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
 .item .name {
   color: tomato;
   font-size: 20px;
@@ -17,11 +22,11 @@
 
 .item Button {
   margin-top: 10px;
-  background-color: rgb(6, 161, 6) !important;
+  background-color: rgb(4, 136, 4) !important;
   color: white !important;
 }
 
 .item Button:hover {
   background-color: white !important;
-  color: rgb(6, 161, 6) !important;
+  color: rgb(4, 136, 4) !important;
 }

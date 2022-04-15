@@ -79,3 +79,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+Button {
+  background-color: rgb(4, 136, 4) !important;
+  color: white !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}

@@ -35,12 +35,29 @@ const DefaultLayout = (props) => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  const windowWidth = window.innerWidth < 768;
+  useEffect(() => {
+    console.log(windowWidth);
+    if (windowWidth) {
+      setCollapsed(true);
+    }
+  }, [windowWidth, collapsed]);
+
   return (
     <Layout>
       {loading && <Spin size="large" className="spinner" />}
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={() => {
+          if (windowWidth) {
+            return true;
+          }
+          return collapsed;
+        }}
+      >
         <div className="logo">
-          <h3>SmartPay</h3>
+          <h3>{!windowWidth || !collapsed ? "SmartPay" : "SP"}</h3>
         </div>
         <Menu
           theme="dark"
