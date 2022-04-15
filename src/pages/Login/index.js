@@ -20,7 +20,10 @@ const Login = () => {
     dispatch({ type: "SHOW_LOADING" });
     let response;
     try {
-      response = await axios.post("/auth/login", values);
+      response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/auth/login`,
+        values
+      );
       console.log(response);
       if (!response.data.success) {
         dispatch({ type: "HIDE_LOADING" });
@@ -34,6 +37,7 @@ const Login = () => {
         navigate("/");
       }, 1000);
     } catch (error) {
+      console.log(error);
       dispatch({ type: "HIDE_LOADING" });
       message.error(error?.response?.data?.message);
       console.log(error);

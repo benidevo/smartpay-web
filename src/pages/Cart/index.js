@@ -104,12 +104,16 @@ const Cart = () => {
     dispatch({ type: "SHOW_LOADING" });
     let response;
     try {
-      response = await axios.post("/bills", data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/bills`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       dispatch({ type: "CLEAR_CART" });
       dispatch({ type: "HIDE_LOADING" });
       message.success(response.data.message);

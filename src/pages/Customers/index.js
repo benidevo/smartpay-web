@@ -17,11 +17,14 @@ const Customers = () => {
   const getAllBills = async () => {
     dispatch({ type: "SHOW_LOADING" });
     try {
-      const response = await axios.get("/bills", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/bills`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       dispatch({ type: "HIDE_LOADING" });
       setBillsData(response.data.bills);
     } catch (error) {

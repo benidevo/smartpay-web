@@ -35,7 +35,9 @@ const Homepage = () => {
     let response;
     dispatch({ type: "SHOW_LOADING" });
     try {
-      response = await axios.get(`/items/category/${selectedCategories}`);
+      response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/items/category/${selectedCategories}`
+      );
       dispatch({ type: "HIDE_LOADING" });
       setItemsData(response.data.items);
     } catch (error) {
@@ -50,7 +52,9 @@ const Homepage = () => {
     dispatch({ type: "SHOW_LOADING" });
     let response;
     try {
-      response = await axios.get(`/items/category/${categoryName}`);
+      response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/items/category/${categoryName}`
+      );
       dispatch({ type: "HIDE_LOADING" });
       setItemsData(response.data.items);
     } catch (error) {

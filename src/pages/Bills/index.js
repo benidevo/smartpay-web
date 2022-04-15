@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useReactToPrint } from "react-to-print";
 import { EyeOutlined } from "@ant-design/icons";
 import DefaultLayout from "../../components/DefaultLayout";
@@ -21,11 +21,14 @@ const Bills = () => {
   const getAllBills = async () => {
     dispatch({ type: "SHOW_LOADING" });
     try {
-      const response = await axios.get("/bills", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/bills`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       dispatch({ type: "HIDE_LOADING" });
       console.log(response.data.data);
       setBillsData(response.data.bills);

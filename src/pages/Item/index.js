@@ -16,7 +16,9 @@ const Items = () => {
   const getAllItems = async () => {
     try {
       dispatch({ type: "SHOW_LOADING" });
-      const response = await axios.get("/items/");
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/items/`
+      );
       dispatch({ type: "HIDE_LOADING" });
       setItemsData(response.data.items);
     } catch (error) {

@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Form, Input, Button, message } from "antd";
 import AuthLayout from "../../components/AuthLayout";
+import axios from "axios";
 
 import "./style.css";
-import axios from "axios";
 
 const Register = () => {
   const [form] = Form.useForm();
@@ -32,7 +32,10 @@ const Register = () => {
     dispatch({ type: "SHOW_LOADING" });
     let response;
     try {
-      response = await axios.post("/auth/register", values);
+      response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/auth/register`,
+        values
+      );
       dispatch({ type: "HIDE_LOADING" });
       message.success(response.data.message);
       dispatch({ type: "SHOW_LOADING" });
