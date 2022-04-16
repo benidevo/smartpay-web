@@ -45,7 +45,7 @@ const Homepage = () => {
         }
       );
       dispatch({ type: "HIDE_LOADING" });
-      setProductsData(response.data.items);
+      setProductsData(response.data.products);
     } catch (error) {
       dispatch({ type: "HIDE_LOADING" });
       message.error(response.data.message);
@@ -68,7 +68,7 @@ const Homepage = () => {
         }
       );
       dispatch({ type: "HIDE_LOADING" });
-      setProductsData(response.data.items);
+      setProductsData(response.data.products);
     } catch (error) {
       dispatch({ type: "HIDE_LOADING" });
       message.error(response.data.message);

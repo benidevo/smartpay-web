@@ -43,6 +43,10 @@ const DefaultLayout = (props) => {
     }
   }, [windowWidth, collapsed]);
 
+  const redirectToHome = () => {
+    navigate("/");
+  };
+
   return (
     <Layout>
       {loading && <Spin size="large" className="spinner" />}
@@ -57,7 +61,9 @@ const DefaultLayout = (props) => {
         }}
       >
         <div className="logo">
-          <h3>{!windowWidth || !collapsed ? "SmartPay" : "SP"}</h3>
+          <h3 onClick={redirectToHome} className="cursor-pointer">
+            {!windowWidth || !collapsed ? "SmartPay" : "SP"}
+          </h3>
         </div>
         <Menu
           theme="dark"
@@ -94,7 +100,7 @@ const DefaultLayout = (props) => {
             }
           )}
           <div
-            className="cart-count d-flex align-items-center"
+            className="cursor-pointer d-flex align-items-center"
             onClick={() => navigate("/cart")}
           >
             <b>

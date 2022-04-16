@@ -30,7 +30,6 @@ const Bills = () => {
         }
       );
       dispatch({ type: "HIDE_LOADING" });
-      console.log(response.data.data);
       setBillsData(response.data.bills);
     } catch (error) {
       console.log(error);

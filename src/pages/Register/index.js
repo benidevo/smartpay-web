@@ -29,6 +29,7 @@ const Register = () => {
   //   };
 
   const onFinish = async (values) => {
+    delete values.confirmPassword;
     dispatch({ type: "SHOW_LOADING" });
     let response;
     try {

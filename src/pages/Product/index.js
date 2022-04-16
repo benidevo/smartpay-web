@@ -26,7 +26,7 @@ const Items = () => {
         }
       );
       dispatch({ type: "HIDE_LOADING" });
-      setProductsData(response.data.items);
+      setProductsData(response.data.products);
     } catch (error) {
       dispatch({ type: "HIDE_LOADING" });
       console.log(error);

@@ -59,7 +59,10 @@
   font-size: 22px;
   font-weight: bold;
   text-align: center;
-  padding-bottom: 100px;
+}
+
+.logo {
+  margin-bottom: 100px;
 }
 
 .ant-menu-item-selected {
@@ -68,7 +71,7 @@
   border-bottom-right-radius: 8px;
 }
 
-.cart-count {
+.cursor-pointer {
   cursor: pointer;
 }
 
