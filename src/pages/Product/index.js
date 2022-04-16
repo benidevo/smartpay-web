@@ -8,16 +8,16 @@ import DefaultLayout from "../../components/DefaultLayout";
 import "./style.css";
 
 const Items = () => {
-  const [itemsData, setItemsData] = useState([]);
+  const [productsData, setProductsData] = useState([]);
   const [modalVisibility, setModalVisibility] = useState(false);
   const [edit, setEdit] = useState(null);
 
   const dispatch = useDispatch();
-  const getAllItems = async () => {
+  const getAllProducts = async () => {
     try {
       dispatch({ type: "SHOW_LOADING" });
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/items`,
+        `${process.env.REACT_APP_API_URL}/products`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const Items = () => {
         }
       );
       dispatch({ type: "HIDE_LOADING" });
-      setItemsData(response.data.items);
+      setProductsData(response.data.items);
     } catch (error) {
       dispatch({ type: "HIDE_LOADING" });
       console.log(error);
@@ -34,7 +34,7 @@ const Items = () => {
   };
 
   useEffect(() => {
-    getAllItems();
+    getAllProducts();
   }, []);
 
   const onFinish = async (values) => {
@@ -43,7 +43,7 @@ const Items = () => {
     try {
       if (!edit) {
         response = await axios.post(
-          `${process.env.REACT_APP_API_URL}/items`,
+          `${process.env.REACT_APP_API_URL}/products`,
           values,
           {
             headers: {
@@ -59,7 +59,7 @@ const Items = () => {
         }
       } else {
         response = await axios.patch(
-          `${process.env.REACT_APP_API_URL}/items/${edit._id}`,
+          `${process.env.REACT_APP_API_URL}/products/${edit._id}`,
           values,
           {
             headers: {
@@ -77,7 +77,7 @@ const Items = () => {
       dispatch({ type: "HIDE_LOADING" });
       message.success(response.data.message);
       setModalVisibility(false);
-      getAllItems();
+      getAllProducts();
     } catch (error) {
       dispatch({ type: "HIDE_LOADING" });
       message.error("Something went wrong");
@@ -85,11 +85,11 @@ const Items = () => {
     }
   };
 
-  const deleteItem = async (id) => {
+  const deleteProduct = async (id) => {
     dispatch({ type: "SHOW_LOADING" });
     try {
       const response = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/items/${id}`,
+        `${process.env.REACT_APP_API_URL}/products/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -102,7 +102,7 @@ const Items = () => {
         message.error(response.data.message);
       } else {
         message.success(response.data.message);
-        getAllItems();
+        getAllProducts();
       }
     } catch (error) {
       dispatch({ type: "HIDE_LOADING" });
@@ -143,7 +143,7 @@ const Items = () => {
               setEdit(record);
             }}
           />
-          <DeleteOutlined className="mx-2" onClick={() => deleteItem(id)} />
+          <DeleteOutlined className="mx-2" onClick={() => deleteProduct(id)} />
         </div>
       ),
     },
@@ -151,12 +151,12 @@ const Items = () => {
   return (
     <DefaultLayout>
       <div className="d-flex justify-content-between">
-        <h3>Items</h3>
+        <h3>Products</h3>
         <Button type="primary" onClick={() => setModalVisibility(true)}>
-          Add Item
+          Add Product
         </Button>
       </div>
-      <Table columns={columns} dataSource={itemsData} bordered />
+      <Table columns={columns} dataSource={productsData} bordered />
 
       {modalVisibility && (
         <Modal
@@ -165,7 +165,7 @@ const Items = () => {
             setModalVisibility(false);
             setEdit(null);
           }}
-          title={edit ? "Edit Item" : "Add Item"}
+          title={edit ? "Edit Product" : "Add Product"}
           footer={false}
         >
           <Form initialValues={edit} layout="vertical" onFinish={onFinish}>

@@ -40,7 +40,7 @@ function App() {
             }
           />
           <Route
-            path="/items"
+            path="/products"
             element={
               <ProtectedRoutes>
                 <Items />

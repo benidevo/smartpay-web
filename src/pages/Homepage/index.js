@@ -3,14 +3,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import DefaultLayout from "../../components/DefaultLayout";
-import Item from "../../components/Item";
+import Product from "../../components/Product";
 
 import "./style.css";
 
 const Homepage = () => {
-  const [itemsData, setItemsData] = useState([]);
+  const [productsData, setProductsData] = useState([]);
   useEffect(() => {
-    getAllItems();
+    getAllProducts();
   }, []);
   const dispatch = useDispatch();
   const [selectedCategories, setSelectedCategories] = useState("fruits");
@@ -31,12 +31,12 @@ const Homepage = () => {
         "https://images.ctfassets.net/3s5io6mnxfqz/5GlOYuzg0nApcehTPlbJMy/140abddf0f3f93fa16568f4d035cd5e6/AdobeStock_175165460.jpeg?fm=jpg&w=900&fl=progressive",
     },
   ];
-  const getAllItems = async () => {
+  const getAllProducts = async () => {
     let response;
     dispatch({ type: "SHOW_LOADING" });
     try {
       response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/items/category/${selectedCategories}`,
+        `${process.env.REACT_APP_API_URL}/products/category/${selectedCategories}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const Homepage = () => {
         }
       );
       dispatch({ type: "HIDE_LOADING" });
-      setItemsData(response.data.items);
+      setProductsData(response.data.items);
     } catch (error) {
       dispatch({ type: "HIDE_LOADING" });
       message.error(response.data.message);
@@ -59,7 +59,7 @@ const Homepage = () => {
     let response;
     try {
       response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/items/category/${categoryName}`,
+        `${process.env.REACT_APP_API_URL}/products/category/${categoryName}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const Homepage = () => {
         }
       );
       dispatch({ type: "HIDE_LOADING" });
-      setItemsData(response.data.items);
+      setProductsData(response.data.items);
     } catch (error) {
       dispatch({ type: "HIDE_LOADING" });
       message.error(response.data.message);
@@ -99,10 +99,10 @@ const Homepage = () => {
         })}
       </div>
       <Row gutter={20}>
-        {itemsData.map((item) => {
+        {productsData.map((product) => {
           return (
             <Col xs={24} lg={6} md={12} sm={6}>
-              <Item item={item} />
+              <Product product={product} />
             </Col>
           );
         })}

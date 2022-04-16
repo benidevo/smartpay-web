@@ -8,7 +8,7 @@ import {
   HomeOutlined,
   CopyOutlined,
   LogoutOutlined,
-  UnorderedListOutlined,
+  ShoppingOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import "./styles.css";
@@ -73,8 +73,8 @@ const DefaultLayout = (props) => {
           <Menu.Item key="3" icon={<CopyOutlined />}>
             <Link to="/bills">Bills</Link>
           </Menu.Item>
-          <Menu.Item key="4" icon={<UnorderedListOutlined />}>
-            <Link to="/items">Items</Link>
+          <Menu.Item key="4" icon={<ShoppingOutlined />}>
+            <Link to="/products">Products</Link>
           </Menu.Item>
           <Menu.Item key="5" icon={<UserOutlined />}>
             <Link to="/customers">Customers</Link>
