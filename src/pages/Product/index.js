@@ -17,7 +17,13 @@ const Items = () => {
     try {
       dispatch({ type: "SHOW_LOADING" });
       const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/items`
+        `${process.env.REACT_APP_API_URL}/items`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
       dispatch({ type: "HIDE_LOADING" });
       setItemsData(response.data.items);
@@ -36,14 +42,32 @@ const Items = () => {
     let response;
     try {
       if (!edit) {
-        response = await axios.post(`${process.env.REACT_APP_API_URL}/items`, values);
+        response = await axios.post(
+          `${process.env.REACT_APP_API_URL}/items`,
+          values,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
         if (!response.data.success) {
           dispatch({ type: "HIDE_LOADING" });
           message.error(response.data.message);
           setModalVisibility(false);
         }
       } else {
-        response = await axios.patch(`/items/${edit._id}`, values);
+        response = await axios.patch(
+          `${process.env.REACT_APP_API_URL}/items/${edit._id}`,
+          values,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
         if (!response.data.success) {
           dispatch({ type: "HIDE_LOADING" });
           message.error(response.data.message);
@@ -65,7 +89,13 @@ const Items = () => {
     dispatch({ type: "SHOW_LOADING" });
     try {
       const response = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/items/${id}`
+        `${process.env.REACT_APP_API_URL}/items/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
       dispatch({ type: "HIDE_LOADING" });
       if (!response.data.success) {

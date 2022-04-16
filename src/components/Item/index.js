@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Button, Col, Row } from "antd";
+import { Button } from "antd";
 
 import "./style.css";
 

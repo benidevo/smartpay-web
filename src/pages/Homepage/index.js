@@ -36,7 +36,13 @@ const Homepage = () => {
     dispatch({ type: "SHOW_LOADING" });
     try {
       response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/items/category/${selectedCategories}`
+        `${process.env.REACT_APP_API_URL}/items/category/${selectedCategories}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
       dispatch({ type: "HIDE_LOADING" });
       setItemsData(response.data.items);
@@ -53,7 +59,13 @@ const Homepage = () => {
     let response;
     try {
       response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/items/category/${categoryName}`
+        `${process.env.REACT_APP_API_URL}/items/category/${categoryName}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
       dispatch({ type: "HIDE_LOADING" });
       setItemsData(response.data.items);

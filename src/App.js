@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./pages/Homepage";
-import Items from "./pages/Item/index";
+import Items from "./pages/Product";
 import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
