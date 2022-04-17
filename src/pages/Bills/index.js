@@ -1,42 +1,23 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useReactToPrint } from "react-to-print";
 import { EyeOutlined } from "@ant-design/icons";
 import DefaultLayout from "../../components/DefaultLayout";
-import axios from "axios";
-import { message, Table, Modal, Button } from "antd";
+import { Table, Modal, Button } from "antd";
+import { getBills } from "../../redux/actions/bills.action";
 
 import "./style.css";
 
 const Bills = () => {
+  const { bills } = useSelector((state) => state.billsReducer);
   const componentRef = useRef();
-  const [billData, setBillsData] = useState([]);
+
   const [billDetailsModal, setBillDetailsModal] = useState(false);
   const [selectedBill, setSelectedBill] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
-    getAllBills();
+    dispatch(getBills());
   }, []);
-
-  const getAllBills = async () => {
-    dispatch({ type: "SHOW_LOADING" });
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/bills`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      );
-      dispatch({ type: "HIDE_LOADING" });
-      setBillsData(response.data.bills);
-    } catch (error) {
-      console.log(error);
-      dispatch({ type: "HIDE_LOADING" });
-      message.error(error?.response?.data?.message || "Something went wrong");
-    }
-  };
 
   const column = [
     {
@@ -99,7 +80,7 @@ const Bills = () => {
   return (
     <DefaultLayout>
       <h3>Bills</h3>
-      <Table columns={column} dataSource={billData} />
+      <Table columns={column} dataSource={bills} />
       {billDetailsModal && (
         <Modal
           visible={billDetailsModal}

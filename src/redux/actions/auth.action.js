@@ -31,7 +31,9 @@ export const registerUser = (userData) => async (dispatch) => {
     localStorage.setItem("accessToken", loginResponse.data.accessToken);
     message.success(response.data.message);
     dispatch({ type: types.HIDE_LOADING });
-    History.push("/");
+    setTimeout(() => {
+      History.push("/");
+    }, 1500);
   } catch (error) {
     message.error(error.response.data.message);
     dispatch({ type: types.HIDE_LOADING });
@@ -53,7 +55,9 @@ export const authenticateUser = (userData) => async (dispatch) => {
     localStorage.setItem("accessToken", response.data.accessToken);
     message.success(response.data.message);
     dispatch({ type: types.HIDE_LOADING });
-    History.push("/");
+    setTimeout(() => {
+      History.push("/");
+    }, 1500);
   } catch (error) {
     message.error(error.response.data.message);
     dispatch({ type: types.HIDE_LOADING });

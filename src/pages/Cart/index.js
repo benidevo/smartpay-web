@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button, Form, Modal, Table, Input, Select, message } from "antd";
+import { Button, Form, Modal, Table, Input, Select } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import {
   DeleteOutlined,
   PlusCircleOutlined,
@@ -16,13 +14,13 @@ import {
 } from "../../redux/actions/cart.action";
 
 import "./style.css";
+import { chargeBill } from "../../redux/actions/bills.action";
 
 const Cart = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);
   const [subtotal, setSubtotal] = useState(0);
   const [chargeBillModal, setChargeBillModal] = useState(false);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -95,31 +93,7 @@ const Cart = () => {
       tax: (subtotal * 0.1).toFixed(2),
       total: (subtotal * 1.1).toFixed(2),
     };
-    dispatch({ type: "SHOW_LOADING" });
-    let response;
-    try {
-      response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/bills`,
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      );
-      dispatch({ type: "CLEAR_CART" });
-      dispatch({ type: "HIDE_LOADING" });
-      message.success(response.data.message);
-      dispatch({ type: "SHOW_LOADING" });
-      setTimeout(() => {
-        dispatch({ type: "HIDE_LOADING" });
-        setChargeBillModal(false);
-        navigate("/bills");
-      }, 1000);
-    } catch (error) {
-      console.log(error.response.data.errors[0].msg);
-    }
+    dispatch(chargeBill(data));
   };
 
   return (

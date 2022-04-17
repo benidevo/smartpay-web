@@ -1,38 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import DefaultLayout from "../../components/DefaultLayout";
-import axios from "axios";
-import { message, Table } from "antd";
+
+import {  Table } from "antd";
+import { getBills } from "../../redux/actions/bills.action";
 
 // import "./style.css";
 
 const Customers = () => {
-  const [billData, setBillsData] = useState([]);
+  const customersData = useSelector((state) => state.billsReducer.bills);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    getAllBills();
+    dispatch(getBills);
   }, []);
-
-  const getAllBills = async () => {
-    dispatch({ type: "SHOW_LOADING" });
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/bills`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      );
-      dispatch({ type: "HIDE_LOADING" });
-      setBillsData(response.data.bills);
-    } catch (error) {
-      console.log(error);
-      dispatch({ type: "HIDE_LOADING" });
-      message.error(error?.response?.data?.message || "Something went wrong");
-    }
-  };
 
   const column = [
     {
@@ -53,7 +34,7 @@ const Customers = () => {
   return (
     <DefaultLayout>
       <h3>Customers</h3>
-      <Table columns={column} dataSource={billData} />
+      <Table columns={column} dataSource={customersData} />
     </DefaultLayout>
   );
 };

@@ -19,3 +19,6 @@ export const GET_PRODUCTS_BY_CATEGORY = generateActions(
 export const ADD_PRODUCT = generateActions("ADD_PRODUCT");
 export const DELETE_PRODUCT = generateActions("DELETE_PRODUCT");
 export const EDIT_PRODUCT = generateActions("EDIT_PRODUCT");
+
+export const GET_BILLS = generateActions("GET_BILLS");
+export const CHARGE_BILL = generateActions("CHARGE_BILL");
