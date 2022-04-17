@@ -19,7 +19,7 @@
 .site-layout .site-layout-background {
   background: #fff;
   box-shadow: 0 0 3px #ccc !important;
-  border-radius: 5px;
+  border-radius: 0.5rem;
 }
 
 .ant-layout-content {
@@ -44,7 +44,7 @@
   margin: 0 10px !important;
   display: flex;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   justify-content: space-between;
 }
 

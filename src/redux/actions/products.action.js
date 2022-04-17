@@ -118,7 +118,6 @@ export const deleteProduct = (id) => async (dispatch) => {
     });
     dispatch({ type: types.HIDE_LOADING });
   } catch (error) {
-    console.log(error);
     message.error(error.response.data.message);
     dispatch({ type: types.HIDE_LOADING });
   }

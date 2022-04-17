@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DefaultLayout from "../../components/DefaultLayout";
 
-import {  Table } from "antd";
+import { Table } from "antd";
 import { getBills } from "../../redux/actions/bills.action";
 
 // import "./style.css";
@@ -34,7 +34,7 @@ const Customers = () => {
   return (
     <DefaultLayout>
       <h3>Customers</h3>
-      <Table columns={column} dataSource={customersData} />
+      <Table columns={column} dataSource={customersData} pagination={false} />
     </DefaultLayout>
   );
 };

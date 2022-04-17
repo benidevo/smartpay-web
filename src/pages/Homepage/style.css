@@ -2,7 +2,7 @@
   border: 2px solid rgb(160, 156, 156);
   margin-right: 50px;
   padding-left: 25px;
-  border-radius: 10px;
+  border-radius: 0.5rem;
   cursor: pointer;
 }
 
@@ -16,8 +16,8 @@
 }
 
 .category img {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
 }
 
 @media only screen and (max-width: 768px) {

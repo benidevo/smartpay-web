@@ -38,7 +38,6 @@ const DefaultLayout = (props) => {
 
   const windowWidth = window.innerWidth < 768;
   useEffect(() => {
-    console.log(windowWidth);
     if (windowWidth) {
       setCollapsed(true);
     }

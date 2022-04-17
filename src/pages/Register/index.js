@@ -52,15 +52,16 @@ const Register = () => {
         </Form.Item>
         <Form.Item
           name="email"
+          required
           rules={[
             {
               required: true,
-              message: "Please provide a valid email!",
+              message: "provide a valid email",
               type: "email",
             },
           ]}
         >
-          <Input placeholder="email" />
+          <Input placeholder="email" required />
         </Form.Item>
         <Form.Item
           name="password"
@@ -72,7 +73,7 @@ const Register = () => {
             },
             {
               min: 6,
-              message: "Password must be at least 6 characters long",
+              message: "password must be at least 6 characters",
               type: "string",
             },
           ]}

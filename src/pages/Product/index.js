@@ -83,7 +83,7 @@ const Items = () => {
           Add Product
         </Button>
       </div>
-      <Table columns={columns} dataSource={products} bordered />
+      <Table columns={columns} dataSource={products} bordered pagination={false}/>
 
       {modalVisibility && (
         <Modal

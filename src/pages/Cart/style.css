@@ -1,7 +1,8 @@
 .subtotal h3 {
+  font-size: 1.33em;
   color: tomato;
   margin-bottom: 0;
-  padding: 10px;
+  padding: 0.7rem;
 }
 
 input,
@@ -9,6 +10,7 @@ input,
   border: 1px solid rgb(1, 35, 26) !important;
   box-shadow: none !important;
   outline: none !important;
+  border-radius: 0.5rem !important;
 }
 
 input:focus,
@@ -20,4 +22,9 @@ input:focus,
 .ant-modal-close-x {
   background-color: white !important;
   color: black;
+}
+
+.charge-bill-amount h5 {
+  font-size: 1.2rem;
+  margin-bottom: 0;
 }

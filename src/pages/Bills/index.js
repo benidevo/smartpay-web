@@ -80,13 +80,13 @@ const Bills = () => {
   return (
     <DefaultLayout>
       <h3>Bills</h3>
-      <Table columns={column} dataSource={bills} />
+      <Table columns={column} dataSource={bills} pagination={false} />
       {billDetailsModal && (
         <Modal
           visible={billDetailsModal}
           onCancel={() => setBillDetailsModal(false)}
           title="Bill Details"
-          width={800}
+          // width={800}
           className="bill-modal"
           footer={false}
         >
@@ -98,7 +98,7 @@ const Bills = () => {
                 </h1>
               </div>
               <div>
-                <p>14 Parkview Crescent</p>
+                <p>Parkview Crescent</p>
                 <p>Lagos 56790</p>
                 <p>08087875432</p>
               </div>
@@ -121,6 +121,7 @@ const Bills = () => {
               dataSource={selectedBill.cartItems}
               bordered
               pagination={false}
+              scroll={{ x: true }}
             />
             <div className="mt-2 dashed-border pb-2">
               <p>

@@ -1,29 +1,33 @@
-.form h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #001628;
-  margin-bottom: 20px;
-}
 
 .form {
   text-align: center;
-  border-radius: 15px;
+  border-radius: 0.5rem;
   background-color: white;
-  padding: 50px;
+  padding: 2rem;
+  max-width: 700px !important;
+}
+
+.form h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #001628;
+  margin-bottom: 2rem;
 }
 
 .ant-input {
     display: block;
-    border-radius: 10px;
-    border: 1px solid #001628;
-    padding: 10px;
-    margin-bottom: 20px;
+    border-radius: 0.5rem !important;
+    border: 1px solid #022d51 !important;
+    padding: 0.25rem;
+    margin-bottom: 1rem;
+    text-align: center !important;
 }
 
 .form Button {
+  margin-top: 1.2em;
     background-color: #001628 !important;
     font-weight: bold;
-    border-radius: 10px;
+    border-radius: 0.5rem;
     border: none;
 }
 .form Button:hover {
