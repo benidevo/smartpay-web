@@ -7,11 +7,13 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Bills from "./pages/Bills";
 import Customers from "./pages/Customers";
+import { NavigateSetter } from "./utils/navigation";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <NavigateSetter />
         <Routes>
           <Route
             path="/"

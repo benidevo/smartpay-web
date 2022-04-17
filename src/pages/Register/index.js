@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Form, Input, Button, message } from "antd";
+import { Form, Input, Button } from "antd";
 import AuthLayout from "../../components/AuthLayout";
-import axios from "axios";
+
+import { registerUser } from "../../redux/actions/auth.action";
 
 import "./style.css";
 
@@ -29,25 +30,7 @@ const Register = () => {
   //   };
 
   const onFinish = async (values) => {
-    delete values.confirmPassword;
-    dispatch({ type: "SHOW_LOADING" });
-    let response;
-    try {
-      response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/register`,
-        values
-      );
-      dispatch({ type: "HIDE_LOADING" });
-      message.success(response.data.message);
-      dispatch({ type: "SHOW_LOADING" });
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
-      return;
-    } catch (error) {
-      dispatch({ type: "HIDE_LOADING" });
-      message.error(error?.response?.data?.message);
-    }
+    dispatch(registerUser(values));
   };
 
   return (

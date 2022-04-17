@@ -1,6 +1,4 @@
 import * as types from "../action.types";
-import axios from "axios";
-import { message } from "antd";
 
 export const addToCart = (product) => (dispatch) => {
   dispatch({

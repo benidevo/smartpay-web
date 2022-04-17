@@ -1,7 +1,6 @@
 import { Col, Divider, Row, message } from "antd";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch, connect, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DefaultLayout from "../../components/DefaultLayout";
 import Product from "../../components/Product";
 import { getProductsByCategory } from "../../redux/actions/products.action";

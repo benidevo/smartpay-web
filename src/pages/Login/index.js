@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { Form, Input, Button, message } from "antd";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Form, Input, Button } from "antd";
 import AuthLayout from "../../components/AuthLayout";
+
+import { authenticateUser } from "../../redux/actions/auth.action";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -17,31 +18,7 @@ const Login = () => {
   }, []);
 
   const onFinish = async (values) => {
-    dispatch({ type: "SHOW_LOADING" });
-    let response;
-    try {
-      response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/login`,
-        values
-      );
-      console.log(response);
-      if (!response.data.success) {
-        dispatch({ type: "HIDE_LOADING" });
-        return message.error(response.data.message);
-      }
-      dispatch({ type: "HIDE_LOADING" });
-      message.success(response.data.message);
-      localStorage.setItem("accessToken", response.data.accessToken);
-      dispatch({ type: "SET_USER_ID", payload: response.data.accessToken });
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
-    } catch (error) {
-      console.log(error);
-      dispatch({ type: "HIDE_LOADING" });
-      message.error(error?.response?.data?.message);
-      console.log(error);
-    }
+    dispatch(authenticateUser(values));
   };
 
   return (
