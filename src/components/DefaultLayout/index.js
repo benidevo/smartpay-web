@@ -20,7 +20,8 @@ const DefaultLayout = (props) => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
 
-  const  {loading, cartItems}  = useSelector((state) => state.productsReducer);
+  const { loading } = useSelector((state) => state.productsReducer);
+  const { cartItems } = useSelector((state) => state.cartReducer);
 
   const toggle = () => {
     setCollapsed(!collapsed);

@@ -2,16 +2,15 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "antd";
 
+import { addToCart } from "../../redux/actions/cart.action";
+
 import "./style.css";
 
 const Item = ({ product }) => {
   const dispatch = useDispatch();
 
-  function addToCart() {
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: { ...product, quantity: 1 },
-    });
+  function onAddToCart() {
+    dispatch(addToCart(product));
   }
 
   return (
@@ -22,7 +21,7 @@ const Item = ({ product }) => {
         <b>Price: </b>${product.price}/kg
       </h4>
       <div className="d-flex justify-content-end">
-        <Button onClick={addToCart}>Add to Cart</Button>
+        <Button onClick={onAddToCart}>Add to Cart</Button>
       </div>
     </div>
   );

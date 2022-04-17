@@ -10,10 +10,15 @@ import {
 } from "@ant-design/icons";
 import DefaultLayout from "../../components/DefaultLayout";
 
+import {
+  updateCartItem,
+  deleteCartItem,
+} from "../../redux/actions/cart.action";
+
 import "./style.css";
 
 const Cart = () => {
-  const { cartItems } = useSelector((state) => state.productsReducer);
+  const { cartItems } = useSelector((state) => state.cartReducer);
   const [subtotal, setSubtotal] = useState(0);
   const [chargeBillModal, setChargeBillModal] = useState(false);
 
@@ -29,26 +34,15 @@ const Cart = () => {
   }, [cartItems]);
 
   const increaseQuantity = (record) => {
-    dispatch({
-      type: "UPDATE_CART_ITEMS",
-      payload: { ...record, quantity: record.quantity + 1 },
-    });
+    dispatch(updateCartItem(record, record.quantity + 1));
   };
 
   const decreaseQuantity = (record) => {
-    if (record.quantity !== 1) {
-      dispatch({
-        type: "UPDATE_CART_ITEMS",
-        payload: { ...record, quantity: record.quantity - 1 },
-      });
-    }
+    dispatch(updateCartItem(record, record.quantity - 1));
   };
 
   const deleteItem = (record) => {
-    dispatch({
-      type: "DELETE_CART_ITEM",
-      payload: record,
-    });
+    dispatch(deleteCartItem(record));
   };
 
   const columns = [

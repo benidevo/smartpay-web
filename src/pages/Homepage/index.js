@@ -13,12 +13,12 @@ const Homepage = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getProductsByCategory("fruits"));
-  }, [dispatch]);
-  const [selectedCategories, setSelectedCategories] = useState("fruits");
+    dispatch(getProductsByCategory("Fruits"));
+  }, []);
+  const [selectedCategories, setSelectedCategories] = useState("Fruits");
   const categories = [
     {
-      name: "fruits",
+      name: "Fruits",
       imageUrl:
         "https://upload.wikimedia.org/wikipedia/commons/2/2f/Culinary_fruits_front_view.jpg",
     },
@@ -28,7 +28,7 @@ const Homepage = () => {
         "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/shopping-bag-full-of-fresh-vegetables-and-fruits-royalty-free-image-1128687123-1564523576.jpg",
     },
     {
-      name: "meat",
+      name: "Meat",
       imageUrl:
         "https://images.ctfassets.net/3s5io6mnxfqz/5GlOYuzg0nApcehTPlbJMy/140abddf0f3f93fa16568f4d035cd5e6/AdobeStock_175165460.jpeg?fm=jpg&w=900&fl=progressive",
     },
