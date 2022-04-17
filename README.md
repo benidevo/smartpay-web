@@ -1,4 +1,4 @@
-# Github Finder
+# Smart API
 
 ## Description
 
