@@ -36,8 +36,8 @@ npm install
 npm test
 ```
 
-## Run Development Server
+## Run Server
 
 ```bash
-npm run dev
+npm start
 ```
