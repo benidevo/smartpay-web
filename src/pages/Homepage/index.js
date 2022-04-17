@@ -1,18 +1,20 @@
 import { Col, Divider, Row, message } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, connect, useSelector } from "react-redux";
 import DefaultLayout from "../../components/DefaultLayout";
 import Product from "../../components/Product";
+import { getProductsByCategory } from "../../redux/actions/products.action";
 
 import "./style.css";
 
 const Homepage = () => {
-  const [productsData, setProductsData] = useState([]);
-  useEffect(() => {
-    getAllProducts();
-  }, []);
+  const products = useSelector((state) => state.productsReducer.products);
+
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProductsByCategory("fruits"));
+  }, [dispatch]);
   const [selectedCategories, setSelectedCategories] = useState("fruits");
   const categories = [
     {
@@ -31,49 +33,10 @@ const Homepage = () => {
         "https://images.ctfassets.net/3s5io6mnxfqz/5GlOYuzg0nApcehTPlbJMy/140abddf0f3f93fa16568f4d035cd5e6/AdobeStock_175165460.jpeg?fm=jpg&w=900&fl=progressive",
     },
   ];
-  const getAllProducts = async () => {
-    let response;
-    dispatch({ type: "SHOW_LOADING" });
-    try {
-      response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/products/category/${selectedCategories}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      );
-      dispatch({ type: "HIDE_LOADING" });
-      setProductsData(response.data.products);
-    } catch (error) {
-      dispatch({ type: "HIDE_LOADING" });
-      message.error(response.data.message);
-      console.log(error);
-    }
-  };
 
   const selectCategory = async (categoryName) => {
     setSelectedCategories(categoryName);
-    dispatch({ type: "SHOW_LOADING" });
-    let response;
-    try {
-      response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/products/category/${categoryName}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      );
-      dispatch({ type: "HIDE_LOADING" });
-      setProductsData(response.data.products);
-    } catch (error) {
-      dispatch({ type: "HIDE_LOADING" });
-      message.error(response.data.message);
-      console.log(error);
-    }
+    dispatch(getProductsByCategory(categoryName));
   };
 
   return (
@@ -99,13 +62,14 @@ const Homepage = () => {
         })}
       </div>
       <Row gutter={20}>
-        {productsData.map((product) => {
-          return (
-            <Col xs={24} lg={6} md={12} sm={6}>
-              <Product product={product} />
-            </Col>
-          );
-        })}
+        {products &&
+          products.map((product) => {
+            return (
+              <Col xs={24} lg={6} md={12} sm={6}>
+                <Product product={product} />
+              </Col>
+            );
+          })}
       </Row>
     </DefaultLayout>
   );

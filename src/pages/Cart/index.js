@@ -13,7 +13,7 @@ import DefaultLayout from "../../components/DefaultLayout";
 import "./style.css";
 
 const Cart = () => {
-  const { cartItems } = useSelector((state) => state.rootReducer);
+  const { cartItems } = useSelector((state) => state.productsReducer);
   const [subtotal, setSubtotal] = useState(0);
   const [chargeBillModal, setChargeBillModal] = useState(false);
 
