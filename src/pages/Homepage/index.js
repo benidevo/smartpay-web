@@ -22,7 +22,7 @@ const Homepage = () => {
         "https://upload.wikimedia.org/wikipedia/commons/2/2f/Culinary_fruits_front_view.jpg",
     },
     {
-      name: "vegetables",
+      name: "Vegetables",
       imageUrl:
         "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/shopping-bag-full-of-fresh-vegetables-and-fruits-royalty-free-image-1128687123-1564523576.jpg",
     },

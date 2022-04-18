@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form, Input, Button } from "antd";
 import AuthLayout from "../../components/AuthLayout";
 
@@ -30,7 +30,7 @@ const Login = () => {
           rules={[
             {
               required: true,
-              message: "Please provide a valid email!",
+              message: "Provide a valid email!",
               type: "email",
             },
           ]}
@@ -55,9 +55,12 @@ const Login = () => {
         >
           <Input placeholder="Password" />
         </Form.Item>
-        <Button type="primary" htmlType="submit">
-          Login
-        </Button>
+        <div>
+          <Link to="/register">Signup </Link>
+          <Button type="primary" htmlType="submit">
+            Login
+          </Button>
+        </div>
       </Form>
     </AuthLayout>
   );

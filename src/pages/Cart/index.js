@@ -125,17 +125,17 @@ const Cart = () => {
       >
         <Form layout="vertical" onFinish={onFinish}>
           <Form.Item label="Customer Name" name="customerName" required={true}>
-            <Input type="text" placeholder="John Doe" />
+            <Input type="text" placeholder="John Doe" required />
           </Form.Item>
           <Form.Item label="Phone Number" name="phone" required={true}>
-            <Input type="tel" placeholder="0803453213" />
+            <Input type="tel" placeholder="0803453213" required />
           </Form.Item>
           <Form.Item
             label="Payment Method"
             name="paymentMethod"
             required={true}
           >
-            <Select>
+            <Select required>
               <Select.Option value="CASH">Cash</Select.Option>
               <Select.Option value="CARD">Card</Select.Option>
             </Select>

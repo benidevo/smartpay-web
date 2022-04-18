@@ -1,5 +1,4 @@
-import { Table, Button, Modal, Form, Input, Select, message } from "antd";
-import axios from "axios";
+import { Table, Button, Modal, Form, Input, Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
@@ -83,7 +82,12 @@ const Items = () => {
           Add Product
         </Button>
       </div>
-      <Table columns={columns} dataSource={products} bordered pagination={false}/>
+      <Table
+        columns={columns}
+        dataSource={products}
+        bordered
+        pagination={false}
+      />
 
       {modalVisibility && (
         <Modal
@@ -97,20 +101,20 @@ const Items = () => {
         >
           <Form initialValues={edit} layout="vertical" onFinish={onFinish}>
             <Form.Item name="name" label="Name">
-              <Input type="text" />
+              <Input type="text" required/>
             </Form.Item>
             <Form.Item name="image" label="Image URL">
-              <Input type="text" />
+              <Input type="url" required/>
             </Form.Item>
             <Form.Item name="category" label="Category">
               <Select>
-                <Select.Option value="fruits">Fruits</Select.Option>
-                <Select.Option value="vegetables">Vegetables</Select.Option>
-                <Select.Option value="meat">Meat</Select.Option>
+                <Select.Option value="Fruits">Fruits</Select.Option>
+                <Select.Option value="Vegetables">Vegetables</Select.Option>
+                <Select.Option value="Meat">Meat</Select.Option>
               </Select>
             </Form.Item>
             <Form.Item name="price" label="Price">
-              <Input type="number" />
+              <Input type="number" required/>
             </Form.Item>
             <div className="d-flex justify-content-end">
               <Button type="primary" htmlType="submit">
