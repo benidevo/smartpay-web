@@ -1,7 +1,7 @@
 .category {
   border: 2px solid rgb(160, 156, 156);
-  margin-right: 50px;
-  padding-left: 25px;
+  margin-right: 3.125em;
+  padding-left: 1.563em;
   border-radius: 0.5rem;
   cursor: pointer;
 }
@@ -11,8 +11,10 @@
 }
 
 .category h4 {
-  margin-right: 25px;
-  font-size: 22px;
+  margin-right: 1.563em;
+  font-size: 1.5em;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
 }
 
 .category img {

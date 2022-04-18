@@ -16,7 +16,7 @@ export const getBills = () => async (dispatch) => {
     message.success(response.data.message, 0.5);
   } catch (error) {
     dispatch({ type: types.HIDE_LOADING });
-    message.error(error?.response?.data?.message || "Something went wrong");
+    message.error(error?.response?.data?.message || "Something went wrong", 1000);
   }
 };
 

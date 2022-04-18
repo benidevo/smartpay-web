@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { Form, Input, Button } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Input, Button, message } from "antd";
 import AuthLayout from "../../components/AuthLayout";
 
 import { registerUser } from "../../redux/actions/auth.action";
@@ -9,8 +9,6 @@ import { registerUser } from "../../redux/actions/auth.action";
 import "./style.css";
 
 const Register = () => {
-  const [form] = Form.useForm();
-
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
@@ -20,17 +18,14 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
-  //   const validatePasswords = (rule, value, callback) => {
-  //     console.log(form.getFieldsValue(true));
-  //     if (value && value !== form.getFieldValue("password")) {
-  //       callback("Passwords do not match!");
-  //     } else {
-  //       callback();
-  //     }
-  //   };
-
   const onFinish = async (values) => {
-    dispatch(registerUser(values));
+    const password = values.password;
+    const confirmPassword = values.confirmPassword;
+    if (password !== confirmPassword) {
+      message.error("Passwords do not match!");
+    } else {
+      dispatch(registerUser(values));
+    }
   };
 
   return (
@@ -83,20 +78,11 @@ const Register = () => {
         </Form.Item>
         <Form.Item
           name="confirmPassword"
-          rules={[
-            {
-              required: true,
-              message: "Password is required!",
-              type: "string",
-            },
-            // {
-            //   validator: validatePasswords,
-            // },
-          ]}
           type="password"
         >
-          <Input placeholder="Confirm Password" />
+          <Input placeholder="Confirm Password" required />
         </Form.Item>
+        <Link to="/login">Login </Link>
         <Button type="primary" htmlType="submit">
           Register
         </Button>
