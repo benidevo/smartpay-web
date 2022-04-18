@@ -1,0 +1,24 @@
+.content-div {
+  height: 70vh;
+  margin: auto;
+}
+
+.content-div h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #001628;
+  margin-bottom: 2rem;
+  margin-top: 0 !important;
+}
+
+@media screen and (max-width: 425px) {
+  .content-div h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .content-div h1 {
+    font-size: 1rem;
+  }
+}

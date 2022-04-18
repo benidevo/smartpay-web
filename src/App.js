@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Bills from "./pages/Bills";
 import Customers from "./pages/Customers";
 import { NavigateSetter } from "./utils/navigation";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <BrowserRouter>
         <NavigateSetter />
         <Routes>
+          <Route path="*" element={<PageNotFound />} />
           <Route
             path="/"
             element={

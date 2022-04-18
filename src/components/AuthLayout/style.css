@@ -14,7 +14,7 @@
   max-width: max-content;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 550px) {
   .main-div img {
     display: none;
   }
