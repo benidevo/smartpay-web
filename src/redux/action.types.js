@@ -6,6 +6,7 @@ export const HIDE_LOADING = "HIDE_LOADING";
 export const ADD_TO_CART = generateActions("ADD_TO_CART");
 export const DELETE_CART_ITEM = generateActions("DELETE_CART_ITEM");
 export const UPDATE_CART_ITEM = generateActions("UPDATE_CART_ITEM");
+export const CLEAR_CART = generateActions("CLEAR_CART");
 
 export const SET_ACCESS_TOKEN = generateActions("SET_ACCESS_TOKEN");
 export const LOGIN = generateActions("LOGIN");

@@ -16,7 +16,10 @@ export const getBills = () => async (dispatch) => {
     message.success(response.data.message, 0.5);
   } catch (error) {
     dispatch({ type: types.HIDE_LOADING });
-    message.error(error?.response?.data?.message || "Something went wrong", 1000);
+    message.error(
+      error?.response?.data?.message || "Something went wrong",
+      1000
+    );
   }
 };
 
@@ -32,6 +35,7 @@ export const chargeBill = (billData) => async (dispatch) => {
         },
       }
     );
+    dispatch({ type: types.CLEAR_CART });
     dispatch({ type: types.HIDE_LOADING });
     message.success(response.data.message);
     setTimeout(() => {

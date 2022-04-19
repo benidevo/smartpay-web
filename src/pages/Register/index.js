@@ -74,13 +74,10 @@ const Register = () => {
           ]}
           type="password"
         >
-          <Input placeholder="Password" />
+          <Input placeholder="Password" type="password" />
         </Form.Item>
-        <Form.Item
-          name="confirmPassword"
-          type="password"
-        >
-          <Input placeholder="Confirm Password" required />
+        <Form.Item name="confirmPassword" type="password">
+          <Input placeholder="Confirm Password" required type="password" />
         </Form.Item>
         <Link to="/login">Login </Link>
         <Button type="primary" htmlType="submit">

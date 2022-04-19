@@ -53,7 +53,7 @@ const Login = () => {
           ]}
           type="password"
         >
-          <Input placeholder="Password" />
+          <Input placeholder="Password" type="password" />
         </Form.Item>
         <div>
           <Link to="/register">Signup </Link>

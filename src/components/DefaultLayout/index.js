@@ -8,7 +8,6 @@ import {
   HomeOutlined,
   CopyOutlined,
   LogoutOutlined,
-  LoginOutlined,
   ShoppingOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
@@ -34,8 +33,10 @@ const DefaultLayout = (props) => {
   };
 
   useEffect(() => {
-    console.log(window.innerWidth);
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    if (!localStorage.getItem("accessToken")) {
+      navigate("/login");
+    }
   }, [cartItems]);
 
   const windowWidth = window.innerWidth < 768;
@@ -87,15 +88,9 @@ const DefaultLayout = (props) => {
           <Menu.Item key="5" icon={<UserOutlined />}>
             <Link to="/customers">Customers</Link>
           </Menu.Item>
-          {localStorage.getItem("accessToken") ? (
-            <Menu.Item key="6" icon={<LogoutOutlined />} onClick={logout}>
-              <Link to="/logout">Logout</Link>
-            </Menu.Item>
-          ) : (
-            <Menu.Item key="6" icon={<LoginOutlined />} onClick={logout}>
-              <Link to="/logout">Login</Link>
-            </Menu.Item>
-          )}
+          <Menu.Item key="6" icon={<LogoutOutlined />} onClick={logout}>
+            <Link to="/logout">Logout</Link>
+          </Menu.Item>
         </Menu>
       </Sider>
       <Layout className="site-layout">
