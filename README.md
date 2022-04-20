@@ -2,7 +2,11 @@
 
 ## Description
 
-SmartPay is a point of sale application that allows you to accept payments from your customers and record transaction details.
+SmartPay is a point of sale application that allows users to sell products to customers, record transaction details, and print receipts.
+
+[Live Preview](https://smartpay-pos.netlify.app)
+
+![Screenshot](smartpay.png?raw=true "SmartPay")
 
 ## Technologies
 
@@ -28,12 +32,6 @@ Before starting, you need to have [Git](https://git-scm.com) and [Nodejs](https:
 
 ```bash
 npm install
-```
-
-## Run Tests
-
-```bash
-npm test
 ```
 
 ## Run Server
